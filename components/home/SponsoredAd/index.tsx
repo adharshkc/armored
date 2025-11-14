@@ -1,9 +1,18 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 const SponsoredAd = () => {
+    const [expanded, setExpanded] = useState(false);
+
+    const moreParagraphs = [
+        "ArmoredMart offers installation guides, expert tips, and in-depth product breakdowns so you can confidently choose the right accessories for your ride.",
+        "Our support team is always available to help with fitment questions, compatibility checks, and warranty information to ensure a smooth ownership experience.",
+        "Sign up for updates and exclusive offers to be the first to know about new arrivals, limited editions, and seasonal promotions.",
+    ];
+
     return (
         <section className="w-full bg-[#31332C] text-white py-10">
             <div className="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-[140px]">
@@ -23,8 +32,8 @@ const SponsoredAd = () => {
                             />
                         </div>
                     </Link>
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10">
-                        <p className="text-xs leading-relaxed">
+                    <div className="flex flex-row justify-between items-start mt-1 gap-3 mb-10 flex-wrap">
+                        <p className="text-xs leading-relaxed flex-1">
                             <span
                                 className="text-[#D35400] font-semibold"
                                 style={{
@@ -53,7 +62,7 @@ const SponsoredAd = () => {
                             </span>
                         </p>
                         <p
-                            className="text-[#737373] mt-2 sm:mt-0"
+                            className="text-[#737373] ml-4 shrink-0 mt-0"
                             style={{
                                 fontFamily: "Inter, sans-serif",
                                 fontWeight: 400,
@@ -145,7 +154,10 @@ const SponsoredAd = () => {
 
 
                 {/* Text Section */}
-                <div className="text-white font-[inter, sans-serif] font-[14px] 2xl:mt-20 xl:mt-16 text-sm space-y-4 leading-relaxed">
+                <div
+                    className="text-white font-[inter, sans-serif] font-[14px] 2xl:mt-20 xl:mt-16 text-sm space-y-4 leading-relaxed"
+                    style={{ lineHeight: "20px" }}
+                >
                     <p>
                         Perform preventive maintenance and make timely repairs, increase
                         horsepower and improve handling and braking for better overall
@@ -217,12 +229,25 @@ const SponsoredAd = () => {
                         shops.
                     </p>
 
-                    <Link
-                        href="#"
-                        className="inline-block mt-3 text-white hover:text-gray-400 font-inter font-semibold text-sm leading-[100%] tracking-[0%] underline decoration-solid underline-offset-[0%] decoration-[0%]"
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setExpanded((prev) => !prev);
+                        }}
+                        className="inline-block mt-3 text-white hover:text-gray-400 font-inter font-semibold text-sm leading-[100%] tracking-[0%] underline decoration-solid decoration-[0%]"
+                        aria-expanded={expanded}
                     >
-                        Read More
-                    </Link>
+                        {expanded ? "Read Less" : "Read More"}
+                    </button>
+
+                    {/* Render additional dummy paragraphs downward when expanded */}
+                    {expanded && (
+                        <div className="mt-4 space-y-4">
+                            {moreParagraphs.map((txt, i) => (
+                                <p key={i}>{txt}</p>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

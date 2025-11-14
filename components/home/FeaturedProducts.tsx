@@ -67,14 +67,15 @@ export const FeaturedProducts = () => {
 
   return (
     <section
-      className="py-16 px-4 bg-center bg-cover"
+      className="py-16 bg-center bg-cover"
       style={{ backgroundImage: "url('/featured products/background.png')" }}
     >
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white ml-[8.1%] mb-8 sm:mb-10 lg:mb-12 font-orbitron">
-        FEATURED PRODUCTS
-      </h2>
+      <div className="container-figma">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-8 sm:mb-10 lg:mb-12 font-orbitron">
+          FEATURED PRODUCTS
+        </h2>
 
-      <div className="flex flex-col md:flex-row justify-center items-start 2xl:gap-[140px] gap-8 max-w-[1728px] mx-auto relative">
+        <div className="flex flex-col md:flex-row justify-between items-start 2xl:gap-[140px] gap-8 relative">
         {displayedProducts.map((product, index) => {
           // The middle product (index 1) is always focused
           const isFocused = index === 1;
@@ -146,6 +147,8 @@ export const FeaturedProducts = () => {
             aria-label={`View products ${index * 3 + 1} to ${Math.min((index + 1) * 3, products.length)}`}
           />
         ))}
+      </div>
+      
       </div>
     </section>
   );
