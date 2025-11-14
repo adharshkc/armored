@@ -6,7 +6,7 @@ export default function Home() {
       <ImageSlider />
       <Categories />
       <FeaturedProducts />
-      <TopSellingProducts />
+      <TopSellingProducts title="Top Selling Products" />
       <SponsoredAd />
     </main>
   );

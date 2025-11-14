@@ -1,17 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SeoText from '@/components/footer/SeoText';
 
 const SponsoredAd = () => {
-    const [expanded, setExpanded] = useState(false);
 
-    const moreParagraphs = [
-        "ArmoredMart offers installation guides, expert tips, and in-depth product breakdowns so you can confidently choose the right accessories for your ride.",
-        "Our support team is always available to help with fitment questions, compatibility checks, and warranty information to ensure a smooth ownership experience.",
-        "Sign up for updates and exclusive offers to be the first to know about new arrivals, limited editions, and seasonal promotions.",
-    ];
 
     return (
         <section className="w-full bg-[#31332C] text-white py-10">
@@ -118,7 +112,7 @@ const SponsoredAd = () => {
                                 />
                             </div>
                             <div>
-                                <h4 
+                                <h4
                                     className="mb-1"
                                     style={{
                                         fontFamily: "Orbitron",
@@ -132,16 +126,16 @@ const SponsoredAd = () => {
                                 >
                                     {item.title}
                                 </h4>
-                                <p 
+                                <p
                                     className="text-gray-300"
                                     style={{
-                                    fontFamily: "Inter, sans-serif",
-                                    fontWeight: 400,
-                                    fontStyle: "normal",
-                                    fontSize: "14px",
-                                    lineHeight: "100%",
-                                    letterSpacing: "0%",
-                                }}
+                                        fontFamily: "Inter, sans-serif",
+                                        fontWeight: 400,
+                                        fontStyle: "normal",
+                                        fontSize: "14px",
+                                        lineHeight: "100%",
+                                        letterSpacing: "0%",
+                                    }}
                                 >
                                     {item.text}
                                 </p>
@@ -153,102 +147,8 @@ const SponsoredAd = () => {
                 <div className="w-full h-px bg-gray-700 mb-10"></div>
 
 
-                {/* Text Section */}
-                <div
-                    className="text-white font-[inter, sans-serif] font-[14px] 2xl:mt-20 xl:mt-16 text-sm space-y-4 leading-relaxed"
-                    style={{ lineHeight: "20px" }}
-                >
-                    <p>
-                        Perform preventive maintenance and make timely repairs, increase
-                        horsepower and improve handling and braking for better overall
-                        performance, and give your{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            car
-                        </Link>
-                        ,{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            truck
-                        </Link>
-                        , or{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            SUV
-                        </Link>{" "}
-                        the unique appearance that will have heads turning wherever you roll.
-                        You can do it all with{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            parts and accessories
-                        </Link>{" "}
-                        from{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            Armed Mart
-                        </Link>
-                        . Unlike some online aftermarket vendors that have{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            repair parts
-                        </Link>{" "}
-                        but can’t help you dress up your ride, or{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            sell
-                        </Link>{" "}
-                        exterior accessories but don’t have the{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            wheels
-                        </Link>{" "}
-                        and tires you need to complete the look, we’re the one-stop
-                        destination for all your automotive essentials.
-                    </p>
-
-                    <p>
-                        Explore our extensive range of options with our{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            Shop by Product
-                        </Link>{" "}
-                        and{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            Shop by Brand
-                        </Link>{" "}
-                        sections to find exactly what you need quickly and easily. No matter
-                        what you want to do with your{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            vehicle
-                        </Link>{" "}
-                        or where you get your kicks — on the street, at the track, or
-                        off-road — you’ll find quality,{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            name-brand parts and accessories
-                        </Link>{" "}
-                        on our digital shelves to turn your{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            automotive
-                        </Link>{" "}
-                        dreams into reality. And we’ve gathered all the vehicle-appropriate
-                        products you’re looking for in our{" "}
-                        <Link href="#" className="text-white font-bold underline cursor-pointer">
-                            Jeep, Truck, and SUV
-                        </Link>{" "}
-                        shops.
-                    </p>
-
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setExpanded((prev) => !prev);
-                        }}
-                        className="inline-block mt-3 text-white hover:text-gray-400 font-inter font-semibold text-sm leading-[100%] tracking-[0%] underline decoration-solid decoration-[0%]"
-                        aria-expanded={expanded}
-                    >
-                        {expanded ? "Read Less" : "Read More"}
-                    </button>
-
-                    {/* Render additional dummy paragraphs downward when expanded */}
-                    {expanded && (
-                        <div className="mt-4 space-y-4">
-                            {moreParagraphs.map((txt, i) => (
-                                <p key={i}>{txt}</p>
-                            ))}
-                        </div>
-                    )}
-                </div>
+                {/* Text Section (shared) */}
+                <SeoText expandable />
             </div>
         </section>
     );

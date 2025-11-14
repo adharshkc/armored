@@ -77,7 +77,7 @@ const products: Product[] = [
   },
 ];
 
-export function TopSellingProducts() {
+export function TopSellingProducts({ title }: { title: string }) {
   const [selectedProduct, setSelectedProduct] = useState<Product>(products[0]);
 
   const handlePrevious = () => {
@@ -95,14 +95,14 @@ export function TopSellingProducts() {
   const previewImage = selectedProduct.bigImage ?? selectedProduct.image;
 
   return (
-    <section className="bg-[#F0EBE3] border border-black font-sans">
+    <section className="bg-[#F0EBE3] font-sans" >
 
       {/* ----------------- MOBILE VIEW ----------------- */}
       <div className="lg:hidden text-black w-full pb-12">
 
         {/* Heading */}
         <div className="px-4 pt-8 pb-4">
-          <h2 className="text-xl font-orbitron font-bold">TOP SELLING PRODUCTS</h2>
+          <h2 className="text-xl font-orbitron font-bold">{title}</h2>
         </div>
 
         {/* MOBILE HORIZONTAL SCROLLER */}
@@ -205,11 +205,10 @@ export function TopSellingProducts() {
               <div
                 key={product.id}
                 onClick={() => setSelectedProduct(product)}
-                className={`border bg-[#FAF8F4] cursor-pointer flex flex-col items-center justify-center text-center hover:shadow-md transition ${
-                  selectedProduct.id === product.id
+                className={`border bg-[#FAF8F4] cursor-pointer flex flex-col items-center justify-center text-center hover:shadow-md transition ${selectedProduct.id === product.id
                     ? "bg-[#FDF9F0]"
                     : "border-[#CCCCCC]"
-                }`}
+                  }`}
                 style={{ width: "245px", height: "281px" }}
               >
                 <div className="relative w-[150px] h-[150px]">
@@ -223,7 +222,7 @@ export function TopSellingProducts() {
         </div>
 
         {/* RIGHT SECTION */}
-        <div className="flex-1 bg-[#EBE3D6] border-l border-black flex flex-col items-center pt-0 lg:h-[900px]">
+        <div className="flex-1 bg-[#EBE3D6] flex flex-col items-center pt-0 lg:h-[900px]">
 
           {/* IMAGE & ARROWS */}
           <div className="relative w-full flex justify-center items-start pt-[123px]">
