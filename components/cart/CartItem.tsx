@@ -78,7 +78,7 @@ export default function CartItem({ data, updateQty, removeItem }:any) {
           <div className="mt-3 flex justify-end">
             <QuantitySelector
               value={data.qty}
-              onChange={(newQty) => updateQty(data.id, newQty)}
+              onChange={(newQty:any) => updateQty(data.id, newQty)}
             />
           </div>
         </div>

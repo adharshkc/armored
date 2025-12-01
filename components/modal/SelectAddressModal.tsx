@@ -1,7 +1,7 @@
 "use client";
 import { X, Edit, Plus } from "lucide-react";
 
-export default function SelectAddressModal({ onClose }) {
+export default function SelectAddressModal({ onClose }:any) {
   const address = {
     label: "Office",
     isDefault: true,
