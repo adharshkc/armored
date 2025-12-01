@@ -1,7 +1,7 @@
 import QuantitySelector from "./QuantitySelector";
 import { Trash2, Share2, Bookmark } from "lucide-react";
 
-export default function CartItem({ data, updateQty, removeItem }) {
+export default function CartItem({ data, updateQty, removeItem }:any) {
   return (
     <div className="bg-[#F4F0E7] p-5">
 
