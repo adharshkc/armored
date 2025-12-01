@@ -130,7 +130,7 @@ const Navbar = () => {
             <div className="flex items-center gap-3">
 
               <Link href="/supplier">
-                <div className="bg-[#39482C] text-white clip-path-supplier flex items-center justify-center px-4 h-[38px]">
+                <div className="bg-[#39482C] text-white hover:bg-[#D35400] clip-path-supplier flex items-center justify-center px-4 h-[38px]">
                   <span className="font-black text-[13px] font-orbitron uppercase">
                     SUPPLIER
                   </span>
@@ -138,7 +138,7 @@ const Navbar = () => {
               </Link>
 
               <Link href="/login">
-                <div className="bg-[#D35400] text-white clip-path-supplier flex items-center justify-center px-4 h-[38px]">
+                <div className="bg-[#D35400] text-white hover:bg-[#39482C] clip-path-supplier flex items-center justify-center px-4 h-[38px]">
                   <span className="font-black text-[13px] font-orbitron uppercase">
                     LOGIN
                   </span>
@@ -242,7 +242,7 @@ const Navbar = () => {
             {/* Right Buttons */}
             <div className="flex items-center space-x-4">
               <Link href="/supplier">
-                <div className="bg-[#39482C] text-white clip-path-supplier flex items-center justify-center w-[260px] h-[47px]">
+                <div className="bg-[#39482C] hover:bg-[#D35400] text-white clip-path-supplier flex items-center justify-center w-[260px] h-[45px]">
                   <span className="font-black text-[20px] font-orbitron uppercase">
                     SUPPLIER ZONE
                   </span>
@@ -250,7 +250,7 @@ const Navbar = () => {
               </Link>
 
               <Link href="/login">
-                <div className="bg-[#D35400] text-white clip-path-supplier flex items-center justify-center w-[140px] h-[47px]">
+                <div className="bg-[#D35400] hover:bg-[#39482C] text-white clip-path-supplier flex items-center justify-center w-[140px] h-[45px]">
                   <span className="font-black text-[20px] font-orbitron uppercase">
                     LOGIN
                   </span>
@@ -261,8 +261,8 @@ const Navbar = () => {
                 <Image
                   src="/cart.svg"
                   alt="Shopping Cart"
-                  width={47}
-                  height={47}
+                  width={40}
+                  height={40}
                   className="hover:opacity-80 transition-opacity"
                 />
               </Link>

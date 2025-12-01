@@ -95,7 +95,7 @@ const Footer = () => {
 
           {/* Links Columns */}
           <div>
-            <h3 className="font-orbitron text-base font-extrabold text-gray-300 mb-3 uppercase leading-none">USEFUL LINKS</h3>
+            <h3 className="font-orbitron text-base font-extrabold text-[#D35400] mb-3 uppercase leading-none">USEFUL LINKS</h3>
             <ul className="space-y-2">
               {usefulLinks.map((link) => (
                 <li key={link.href}>
@@ -111,7 +111,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-orbitron text-base font-extrabold text-gray-300 mb-3 uppercase leading-none">CATEGORIES</h3>
+            <h3 className="font-orbitron text-base font-extrabold text-[#D35400] mb-3 uppercase leading-none">CATEGORIES</h3>
             <ul className="space-y-2">
               {categories.map((item) => (
                 <li key={item.href}>
@@ -127,7 +127,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-orbitron text-base font-extrabold text-gray-300 mb-3 uppercase leading-none">HELP</h3>
+            <h3 className="font-orbitron text-base font-extrabold text-[#D35400] mb-3 uppercase leading-none">HELP</h3>
             <ul className="space-y-2">
               {help.map((item) => (
                 <li key={item.href}>
@@ -143,7 +143,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-orbitron text-base font-extrabold text-gray-300 mb-3 uppercase leading-none">ABOUT US</h3>
+            <h3 className="font-orbitron text-base font-extrabold text-[#D35400] mb-3 uppercase leading-none">ABOUT US</h3>
             <ul className="space-y-2">
               {aboutUs.map((item) => (
                 <li key={item.href}>

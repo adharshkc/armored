@@ -100,34 +100,38 @@ export default function SeoText({
 			</p>
 
 			{expandable ? (
-				<>
-					<button
-						onClick={(e) => {
-							e.preventDefault();
-							setExpanded((p) => !p);
-						}}
-						className="inline-block mt-3 text-white hover:text-gray-400 font-inter font-semibold text-sm leading-[100%] tracking-[0%] underline decoration-solid decoration-[0%]"
-						aria-expanded={expanded}
-					>
-						{expanded ? 'Read Less' : 'Read More'}
-					</button>
+  <>
+    {/* Always show the main paragraphs */}
 
-					{expanded && (
-						<div className="mt-4 space-y-4">
-							{moreParagraphs.map((txt, i) => (
-								<p key={i}>{txt}</p>
-							))}
-						</div>
-					)}
-				</>
-			) : (
-				<Link
-					href={readMoreHref}
-					className="inline-block mt-3 text-white hover:text-gray-400 font-inter font-semibold text-sm leading-[100%] tracking-[0%] underline decoration-solid underline-offset-[0%] decoration-[0%]"
-				>
-					Read More
-				</Link>
-			)}
+    {expanded && (
+      <div className="mt-4 space-y-4">
+        {moreParagraphs.map((txt, i) => (
+          <p key={i}>{txt}</p>
+        ))}
+      </div>
+    )}
+
+    {/* BUTTON BELOW THE EXTRA CONTENT */}
+    <button
+      onClick={(e) => {
+        e.preventDefault();
+        setExpanded((p) => !p);
+      }}
+      className="inline-block mt-3 text-white hover:text-gray-400 font-inter font-semibold text-sm leading-[100%] tracking-[0%] underline decoration-solid decoration-[0%]"
+      aria-expanded={expanded}
+    >
+      {expanded ? 'Read Less' : 'Read More'}
+    </button>
+  </>
+) : (
+  <Link
+    href={readMoreHref}
+    className="inline-block mt-3 text-white hover:text-gray-400 font-inter font-semibold text-sm leading-[100%] tracking-[0%] underline decoration-solid underline-offset-[0%] decoration-[0%]"
+  >
+    Read More
+  </Link>
+)}
+
 		</div>
 	);
 }

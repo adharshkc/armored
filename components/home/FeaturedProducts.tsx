@@ -57,11 +57,9 @@ const products: Product[] = [
 
 export const FeaturedProducts = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // Calculate how many slides we need (groups of 3)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   const totalSlides = Math.ceil(products.length / 3);
-  
-  // Get the current 3 products to display
   const startIndex = currentSlide * 3;
   const displayedProducts = products.slice(startIndex, startIndex + 3);
 
@@ -82,88 +80,126 @@ export const FeaturedProducts = () => {
           }
         }
       `}</style>
+
       <div className="container-figma">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-8 sm:mb-10 lg:mb-12 font-orbitron">
           FEATURED PRODUCTS
         </h2>
 
-        <div className="flex flex-col md:flex-row justify-between items-start 2xl:gap-[140px] gap-8 relative overflow-hidden">
-        {displayedProducts.map((product, index) => {
-          // The middle product (index 1) is always focused
-          const isFocused = index === 1;
-          
-          return (
-            <div
-              key={product.id}
-              className={`bg-transparent border border-b-0 border-white w-[368px] h-[519px] flex flex-col shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-700 ease-in-out animate-[slideIn_0.5s_ease-out] ${
-                isFocused ? "md:mt-16" : ""
+        <div className="flex flex-col md:flex-row justify-between items-start 2xl:gap-[140px] gap-8 relative overflow-visible">
+          {displayedProducts.map((product, index) => {
+            const isFocused = index === 1; // middle card
+            const isHovered = hoveredIndex === index;
+
+            return (
+              <div
+                key={product.id}
+                className={`
+                  bg-transparent border border-b-0 border-white 
+                  w-[368px] h-[519px] flex flex-col 
+                  shadow-[0_0_15px_rgba(255,255,255,0.1)] 
+                  transition-all duration-700 ease-in-out 
+                  animate-[slideIn_0.5s_ease-out]
+                  ${isHovered ? "scale-[1.02]" : ""}
+                  ${isFocused ? "md:mt-16" : ""}
+                `}
+                style={{
+                  animation: `slideIn 0.5s ease-out ${index * 0.1}s both`,
+                }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {/* Image */}
+                <div className="w-full h-[349px] flex items-center justify-center border-b border-white relative overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={300}
+                    height={300}
+                    className={`transition-all duration-300 ${
+                      isHovered
+                        ? "object-cover w-full h-full"
+                        : "object-contain w-[300px] h-[300px]"
+                    }`}
+                  />
+                </div>
+
+                {/* Name */}
+                <div className="w-full h-[60px] flex items-center px-6 border-b border-white">
+                  <h3 className="text-white font-orbitron text-[16px] font-semibold leading-tight">
+                    {product.name}
+                  </h3>
+                </div>
+
+                {/* Price */}
+                {/* Price (Blurred with Info Tooltip) */}
+<div className="w-full h-[60px] flex items-center px-6 relative group">
+  <p className="text-white font-orbitron text-lg flex items-center gap-2 select-none">
+
+    {/* Currency Icon */}
+    <Image
+      src="/icons/currency/dirham-white.svg"
+      alt="Currency"
+      width={20}
+      height={20}
+      className="opacity-60"
+    />
+
+    {/* Blurred Price */}
+    <span className="blur-sm opacity-70">{product.price.toLocaleString()}</span>
+
+    {/* Info Icon */}
+    <span className="text-white opacity-90 text-sm ml-2 cursor-pointer">ℹ️</span>
+  </p>
+
+  {/* Tooltip */}
+  <div
+    className={`
+      absolute left-6 top-[55px] 
+      bg-black text-white text-xs 
+      px-3 py-2 rounded-md shadow-lg 
+      opacity-0 pointer-events-none 
+      group-hover:opacity-100 
+      transition-all duration-300
+      whitespace-nowrap
+    `}
+  >
+    Login to view the price
+  </div>
+</div>
+
+
+                {/* Button */}
+                <div className="w-full grow">
+                  <button
+                    className={`w-full h-full text-[18px] font-orbitron font-extrabold uppercase transition-all
+                      ${
+                       isHovered
+                          ? "bg-[#FF5C00] text-white"
+                          : "bg-white text-[#FF5C00]"
+                      }
+                    `}
+                  >
+                    {product.action}
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Navigation */}
+        <div className="flex justify-center gap-4 mt-8">
+          {Array.from({ length: totalSlides }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`h-1 w-[50px] transition-all ${
+                currentSlide === index ? "bg-[#FF5C00]" : "bg-white/30"
               }`}
-              style={{
-                animation: `slideIn 0.5s ease-out ${index * 0.1}s both`
-              }}
-            >
-              {/* Image area */}
-              <div className="w-full h-[339px] flex items-center justify-center border-b border-white relative overflow-hidden">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  width={300}
-                  height={300}
-                  className={`transition-all duration-300 ${
-                    isFocused
-                      ? "object-cover w-full h-full"
-                      : "object-contain w-[300px] h-[300px]"
-                  }`}
-                />
-              </div>
-
-              {/* Product name */}
-              <div className="w-full h-[60px] flex items-center px-6 border-b border-white">
-                <h3 className="text-white font-orbitron text-[16px] font-semibold leading-tight">
-                  {product.name}
-                </h3>
-              </div>
-
-              {/* Price */}
-              <div className="w-full h-[60px] flex items-center px-6 border-b-0 border-white">
-                <p className="text-white font-orbitron text-lg flex justify-between items-center gap-2">
-                  <Image src="/icons/currency/dirham-white.svg" alt="Currency" width={20} height={20} /> {product.price.toLocaleString()}
-                </p>
-              </div>
-
-              {/* Button */}
-              <div className="w-full grow">
-                <button
-                  className={`w-full h-full text-[18px] font-orbitron font-extrabold uppercase transition-all ${
-                    isFocused
-                      ? "bg-[#FF5C00] text-white"
-                      : "bg-white text-[#FF5C00]"
-                  }`}
-                >
-                  {product.action}
-                </button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Horizontal Bar Navigation */}
-      <div className="flex justify-center gap-4 mt-8">
-        {Array.from({ length: totalSlides }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`h-1 transition-all ${
-              currentSlide === index
-                ? "w-[50px] bg-[#FF5C00]"
-                : "w-[50px] bg-white/30"
-            }`}
-            aria-label={`View products ${index * 3 + 1} to ${Math.min((index + 1) * 3, products.length)}`}
-          />
-        ))}
-      </div>
-      
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

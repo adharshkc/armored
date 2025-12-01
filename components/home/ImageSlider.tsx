@@ -69,17 +69,22 @@ export function ImageSlider() {
     <div className="relative h-[550px] sm:h-[650px] lg:h-[700px] w-full overflow-hidden -mt-16">
 
       {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full">
-        <Image
-          src={activeSlides[currentIndex].url}
-          alt={activeSlides[currentIndex].title}
-          fill
-          className="object-cover transition-all duration-500 ease-in-out"
-          sizes="100vw"
-          quality={100}
-          priority
-        />
-        <div className="absolute" />
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div
+          className="flex h-full transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {activeSlides.map((slide, index) => (
+            <div key={index} className="relative w-full h-full flex-shrink-0">
+              <Image
+                src={slide.url}
+                alt={slide.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Content container */}
@@ -172,24 +177,24 @@ export function ImageSlider() {
       </div>
 
       {/* Slide indicators */}
-<div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+      <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 left-1/2 -translate-x-1/2 flex gap-2 z-20">
 
-  {/* MOBILE INDICATORS (bars) */}
-  <div className="flex sm:hidden gap-2">
-    {activeSlides.map((_, index) => (
-      <button
-        key={index}
-        onClick={() => setCurrentIndex(index)}
-        className={`
+        {/* MOBILE INDICATORS (bars) */}
+        <div className="flex sm:hidden gap-2">
+          {activeSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`
           h-[3px] w-[37px] rounded-full transition-all
           ${index === currentIndex ? 'bg-orange-500' : 'bg-white/50'}
         `}
-      />
-    ))}
-  </div>
+            />
+          ))}
+        </div>
 
-  {/* DESKTOP INDICATORS (dots) */}
-  {/* <div className="hidden sm:flex gap-2">
+        {/* DESKTOP INDICATORS (dots) */}
+        {/* <div className="hidden sm:flex gap-2">
     {activeSlides.map((_, index) => (
       <button
         key={index}
@@ -202,7 +207,7 @@ export function ImageSlider() {
     ))}
   </div> */}
 
-</div>
+      </div>
 
     </div>
   );
